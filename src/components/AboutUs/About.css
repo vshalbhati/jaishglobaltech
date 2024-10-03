@@ -1,0 +1,94 @@
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+  
+  .main-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .company-info {
+    margin-bottom: 3rem;
+  }
+  
+  .company-info h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+  
+  .company-info p {
+    font-size: 1.125rem;
+    line-height: 1.6;
+  }
+  
+  .founders-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+  }
+  
+  .founder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 3rem;
+  }
+  
+  .founder-image {
+    width: 100%;
+    max-width: 300px;
+    margin-bottom: 1rem;
+  }
+  
+  .founder-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+  }
+  
+  .founder-info {
+    text-align: center;
+  }
+  
+  .founder-info h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+  
+  .founder-info p {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+  
+  @media (min-width: 768px) {
+    .founder {
+      flex-direction: row;
+      align-items: flex-start;
+      text-align: left;
+    }
+  
+    .founder.odd {
+      flex-direction: row-reverse;
+    }
+  
+    .founder-image {
+      width: 33%;
+      margin-bottom: 0;
+    }
+  
+    .founder-info {
+      width: 67%;
+      padding: 0 2rem;
+      text-align: left;
+    }
+  
+    .odd .founder-info {
+      padding: 0 2rem 0 0;
+    }
+  }
