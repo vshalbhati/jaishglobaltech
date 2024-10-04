@@ -12,6 +12,7 @@
     text-align: center;
     margin-bottom: 1rem;
     color: #333;
+    margin-top: 22rem;
   }
   
   .intro-text {
@@ -129,8 +130,17 @@
 
 
   /* table wala data */
+  .tabledabba{
+    display:flex;
+    flex-wrap:wrap;
+    gap:20px;
+    width:80%;
+  }
+  /* .tablebox{
+    background-color: ;
+  } */
   table {
-    width: 100%;
+    width: 90%;
     border-collapse: collapse;
     margin: 20px 0;
     font-size: 18px;

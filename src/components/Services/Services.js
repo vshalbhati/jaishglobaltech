@@ -153,6 +153,19 @@ const Services = () => {
   const cyberServices = services.filter(service => service.category === 'cyber');
   const aiServices = services.filter(service => service.category === 'ai');
 
+  const serviceschotadabba=[
+    {name: "Cyber Security Gap Assessment / Analysis, VAPT", color: "purple"},
+    {name: "Microsoft 365 implementation(Azure AD, E3, E5)", color: "blue"},
+    {name: "Identity and Access Management Services", color: "green"},
+    {name: "Governance, Risk Management & Compliance Services", color: "orange"},
+  ];
+  const anotherdabba =[
+    {name: "SOC", color: "purple"},
+    {name: "DevSecOps", color: "blue"},
+    {name: "CI/CD Security", color: "green"},
+    {name: "Cloud Security", color: "orange"},
+    {name: "Data Security", color: "red"},
+  ];
   return (
     <div className="services-container">
       <img
@@ -167,6 +180,84 @@ const Services = () => {
       >
         Our Services
       </motion.h1>
+
+      <div className="services-grid" style={{ display: 'block' }}>
+  {/* upardabba */}
+  <div className="upardabba" style={{ 
+    display: 'flex', 
+    flexWrap: 'wrap', 
+    gap: '1rem', 
+    width: '60%', /* Full width for responsiveness */
+    justifyContent: 'center', 
+    alignItems: 'center', 
+    margin: '0 auto',
+    boxShadow: "0 0 10px rgba(0,0,0,0.5)",
+    padding: "20px",
+    borderRadius: "30px",
+    paddingTop: '60px',
+    paddingBottom: '60px',
+    maxWidth: '1200px' /* Add a max-width for large screens */
+  }}>
+    {serviceschotadabba.map((service, index) => (
+      <motion.div
+        key={index}
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: index * 0.1 }}
+        className="service-card"
+        style={{
+          border: `2px solid ${service.color}`,
+          borderRadius: "20px",
+          width: "100%", /* 100% width for mobile */
+          maxWidth: "15rem", /* Set max width for larger screens */
+          height: "5rem",
+          flex: "1 1 15rem" /* Flex-grow property to allow flexible widths */
+        }}
+      >
+        <p>{service.name}</p>
+      </motion.div>
+    ))}
+  </div>
+
+  <div className="gapdabba" style={{ height: "2rem" }}></div>
+
+  {/* nichedabba */}
+  <div className='nichedabba' style={{
+    display: 'flex',
+    gap: "40px", /* Reduced gap for smaller screens */
+    padding: "2rem",
+    borderRadius: "20px",
+    boxShadow: "0 0 10px rgba(0,0,0,0.5)",
+    marginTop: "3rem",
+    justifyContent: 'center', 
+    alignItems: 'center', 
+    margin: '0 auto',
+    flexWrap: 'wrap', /* Wrap items on smaller screens */
+    maxWidth: '1200px'
+  }}>
+    {anotherdabba.map((service, index) => (
+      <motion.div
+        key={index}
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: index * 0.1 }}
+        className="service-card"
+        style={{
+          border: `2px solid blue`,
+          borderRadius: "20px",
+          width: "100%", /* 100% for mobile */
+          maxWidth: "5rem", /* Max-width for larger screens */
+          height: "3rem",
+          textAlign: 'center',
+          flex: "1 1 5rem" /* Flex-grow to ensure responsiveness */
+        }}
+      >
+        <p>{service.name}</p>
+      </motion.div>
+    ))}
+  </div>
+</div>
+
       
       <motion.p 
         className="services-subtitle"

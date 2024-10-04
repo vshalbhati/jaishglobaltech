@@ -14,7 +14,7 @@ const Book = ({ study, onClick }) => (
     onClick={onClick}
   >
     <div className="book-cover">
-      <p>{study.name}</p>
+      <p style={{"fontWeight":"bold"}}>{study.name}</p>
     </div>
   </motion.div>
 );
@@ -52,22 +52,6 @@ const OpenBook = ({ study, onClose }) => {
     >
       <button className="close-btn" onClick={onClose}><X /></button>
       <div className="book-content">
-      {/* {pages[currentPage]?.content && (
-          <AnimatePresence mode="wait" custom={direction}>
-            <motion.div
-              key={currentPage}
-              initial={{ opacity: 0, x: direction === 1 ? 50 : -50 }}  // Slide in based on direction
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: direction === 1 ? -50 : 50 }}  // Slide out based on direction
-              transition={{ duration: 0.3 }}
-            >
-              <h2 className="book-title">{pages[currentPage].title}</h2>
-              <div className="book-page-content">
-                {pages[currentPage].content}
-              </div>
-            </motion.div>
-          </AnimatePresence>
-        )} */}
         <div style={{"textAlign":"left"}}>
           <h2 >Case Study Domain</h2>
           <p>{study.domain}</p>
@@ -101,16 +85,11 @@ const OpenBook = ({ study, onClose }) => {
         )}
 
       </div>
-      {/* <div className="page-controls">
-        <button onClick={prevPage} disabled={currentPage === 0}><ChevronLeft /></button>
-        <button onClick={nextPage} disabled={currentPage === pages.length - 1}><ChevronRight /></button>
-      </div> */}
     </motion.div>
   );
 };
 
 const Case = () => {
-  const navigate = useNavigate();
 
   const [openStudy, setOpenStudy] = useState(null);
   const [casestudy, setcasestudy] = useState([]);
@@ -147,14 +126,14 @@ const Case = () => {
     <div className="bookshelf">
       <img
         src={require('../../assets/imgs/case.jpg')}
-        style={{"height":"50vh","width":"100vw","left":"0","position":"absolute","zIndex":"0"}}
+        style={{"height":"45vh","width":"100vw","left":"0","position":"absolute","zIndex":"0"}}
       />
       <motion.h1 
           className="products-title"
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          style={{"fontSize":"3rem"}}
+          style={{"fontSize":"3rem","marginTop":"18rem"}}
         >
           Case Studies
         </motion.h1>
@@ -164,7 +143,7 @@ const Case = () => {
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          style={{"fontWeight":"bold","color":"#3fa9d7","marginBottom":"10rem"}}
+          style={{"fontWeight":"bold","color":"#3fa9d7","marginBottom":"8rem","marginTop":"-1rem"}}
         >
           Cyber Security
         </motion.p>
@@ -186,7 +165,7 @@ const Case = () => {
         >
         Artificial Intelligence and Machine Learning
         </motion.p>
-        <div className="books" style={{"display":"flex","marginTop":"-4rem"}}>
+        <div className="books" style={{"display":"flex","marginTop":"-4rem","flexWrap":"wrap"}}>
 
             {aiCaseStudy.map((study, index) => (
               <Book key={index} study={study} onClick={() => setOpenStudy(study)} />

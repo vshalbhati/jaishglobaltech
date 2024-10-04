@@ -10,19 +10,6 @@ const Header = () => {
     const navigate = useNavigate();
 
     const [isOpen, setIsOpen] = useState(false);
-    const [isProductDropdownOpen, setIsProductDropdownOpen] = useState(false);
-    const [isServiceDropdownOpen, setIsServiceDropdownOpen] = useState(false);
-  
-    const toggleDropdown = (type) => {
-      if (type === 'products') {
-        setIsProductDropdownOpen(!isProductDropdownOpen);
-        setIsServiceDropdownOpen(false);
-      } else if (type === 'services') {
-        setIsServiceDropdownOpen(!isServiceDropdownOpen);
-        setIsProductDropdownOpen(false);
-      }
-    };
-  
     return (
       <header className="header">
         <div className="container header-content">
@@ -44,7 +31,6 @@ const Header = () => {
             {isOpen ? <X /> : <Menu />}
           </button>
         </div>
-  
         {isOpen && (
           <motion.nav 
             initial={{ opacity: 0, y: -20 }}
@@ -52,32 +38,13 @@ const Header = () => {
             exit={{ opacity: 0, y: -20 }}
             className="mobile-nav"
           >
-            <a className="mobile-nav-link">Home</a>
-            <a className="mobile-nav-link">About Us</a>
-  
-            <div className="mobile-nav-link" onClick={() => toggleDropdown('products')}>
-              Products {isProductDropdownOpen ? '▲' : '▼'}
-            </div>
-            {isProductDropdownOpen && (
-              <div className="mobile-dropdown">
-                <a>Product 1</a>
-                <a>Product 2</a>
-                <a>Product 3</a>
-              </div>
-            )}
-  
-            <div className="mobile-nav-link" onClick={() => toggleDropdown('services')}>
-              Services {isServiceDropdownOpen ? '▲' : '▼'}
-            </div>
-            {isServiceDropdownOpen && (
-              <div className="mobile-dropdown">
-                <a>Service 1</a>
-                <a>Service 2</a>
-                <a>Service 3</a>
-              </div>
-            )}
-  
-            <a className="mobile-nav-link">Training and Development</a>
+             <a onClick={() => navigate('/')} className="mobile-nav-link">Home</a>
+            <a onClick={() => navigate('/about')} className="mobile-nav-link">About Us</a>
+            <a onClick={() => navigate('/services')} className="mobile-nav-link">Services</a> 
+            <a onClick={() => navigate('/products')} className="mobile-nav-link">Products</a>         
+            <a onClick={() => navigate('/case')} className="mobile-nav-link">Case Studies</a>
+            <a onClick={() => navigate('/tnp')} className="mobile-nav-link">Training and Development</a>
+            <a onClick={() => navigate('/contact')} className="mobile-nav-link">Contact Us</a>
           </motion.nav>
         )}
       </header>

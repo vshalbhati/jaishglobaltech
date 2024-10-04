@@ -89,7 +89,7 @@ function Contact() {
       return (
       <section className="contact-form-section">
       <img
-        src={require('../../assets/imgs/case.jpg')}
+        src={require('../../assets/imgs/contact_bg.jpg')}
         style={{"height":"50vh","width":"100vw","left":"0","position":"absolute","zIndex":"0"}}
       />
       <motion.h1 
@@ -97,13 +97,13 @@ function Contact() {
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        style={{"fontSize":"3rem"}}
+        style={{"fontSize":"3rem","marginTop":"22rem"}}
       >
         Contact Us
       </motion.h1>
-      <div className="container">
-        <div className="contact-info">
-          <h2>Take the first step to success with Jaish Global Pvt. Ltd.</h2>
+      <div className="container" style={{"marginTop":"0px"}}>
+        <div className="contact-info" style={{"marginLeft":"1rem",backgroundColor:'#4299e1'}}>
+          <h2 style={{"color":"white"}}>Take the first step to success with Jaish Global Pvt. Ltd.</h2>
           <p>Have any question?</p>
           <div className="contact-details">
             <p><Phone size={18} /> +91-9205760111, +91-9205760444, +91-124-4461181</p>

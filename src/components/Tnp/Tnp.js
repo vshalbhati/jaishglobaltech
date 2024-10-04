@@ -58,11 +58,16 @@ const Tnp = () => {
 
   return (
     <div className="training-placement-container">
+      <img
+          src={require('../../assets/imgs/tnp_bg.jpg')}
+          style={{"height":"50vh","width":"100vw","left":"0","position":"absolute","zIndex":"-1"}}
+        />
       <motion.h1 
         className="main-title"
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
+        style={{"color":"#333"}}
       >
         Training and Development
       </motion.h1>
@@ -108,7 +113,6 @@ const Tnp = () => {
               transition={{ duration: 0.5, delay: 0.2 * (index + 1) }}
             >
               <h3 className="program-title">{program.title}</h3>
-              <p className="program-duration">Duration: {program.duration}</p>
               <p className="program-description">{program.description}</p>
               <ul className="program-topics">
                 {program.topics.map((topic, topicIndex) => (
@@ -127,26 +131,27 @@ const Tnp = () => {
         </div>
       </section>
 
-      <div>
+      <div className='training-grid'>
+
       {tableData && tableData.length > 0 ? (
         tableData.map((table, index) => (
-          <div key={index}>
-            <h2 style={{"textAlign":"left","marginTop":"5rem"}}>{table.Title}</h2>
+          <div key={index} className='training-card'>
+            <h3 className="program-title">{table.Title}</h3>
             <table>
-              <thead>
-                <tr>
-                  {table.header.map((headerItem, headerIndex) => (
-                    <th key={headerIndex}>{headerItem}</th>
-                  ))}
-                </tr>
-              </thead>
               <tbody>
                 {table.row.map((rowItem, rowIndex) => (
-                  <tr key={rowIndex}>
+                  <ul className="program-topics">
                     {rowItem.cells.map((cellItem, cellIndex) => (
-                      <td key={cellIndex}>{cellItem}</td>
+                      <motion.li 
+                        key={cellIndex}
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.3, delay: 0.1 * cellIndex + 0.5 * (cellIndex + 1) }}
+                      >
+                        {cellItem}
+                      </motion.li>
                     ))}
-                  </tr>
+                  </ul>
                 ))}
               </tbody>
             </table>

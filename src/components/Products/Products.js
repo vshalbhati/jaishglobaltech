@@ -177,8 +177,7 @@ const Products = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.2 }}
-        style={{"marginTop":"5rem",    "color": "#3fa9d7","fontWeight": "bold"
-        }}
+        style={{"marginTop":"1rem", "color": "#3fa9d7", "font-size":"1.2rem"}}
       >
         Discover our range of innovative products related to cyber security designed to transform your business and enhance your productivity.
       </motion.p>
@@ -212,6 +211,7 @@ const Products = () => {
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
+        style={{"marginTop":"8rem"}}
       >
         Artificial Intelligence and Machine Learning
       </motion.h1>

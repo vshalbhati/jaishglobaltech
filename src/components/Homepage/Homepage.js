@@ -2,9 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import {Phone, Mail, MapPin, Instagram, Linkedin, Facebook,Paperclip } from 'lucide-react';
 import './Homepage.css';
-import logo from "../../assets/logo/logo_name.png"
 import { useNavigate } from 'react-router-dom';
 import {  ClipboardList, 
   Search, 
@@ -20,10 +18,25 @@ const VideoCarousel = () => {
     require("../../assets/videos/microsoft.mp4"),
     require("../../assets/videos/risk.mp4"),
     require("../../assets/videos/soc.mp4"),
-
   ];
 
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+
+    return () => {
+      window.removeEventListener('resize', checkMobile);
+    };
+  }, []);
+
   return (
+    <div className="video-carousel-container">
     <Carousel 
       autoPlay 
       interval={10000} 
@@ -32,50 +45,33 @@ const VideoCarousel = () => {
       showStatus={false}
       stopOnHover={false}
       swipeable={true}
+      emulateTouch={true}
+      dynamicHeight={true}
+      showArrows={!isMobile}
     >
       {videos.map((video, index) => (
-        <div key={index}>
-          <video width="100%" height="900" autoPlay loop muted>
+        <div key={index} className="video-slide">
+          <video 
+            width="100%" 
+            height="auto"
+            autoPlay 
+            loop 
+            muted 
+            playsInline
+          >
             <source src={video} type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         </div>
       ))}
     </Carousel>
+  </div>
   );
 };
 
-
-const ServiceItem = ({ title, description }) => {
-  return (
-    <motion.div className="service-item" whileHover={{ scale: 1.05 }}>
-      <h4>{title}</h4>
-      <motion.div
-        className="service-description"
-        initial={{ opacity: 0, height: 0 }}
-        whileHover={{ opacity: 1, height: 'auto' }}
-        transition={{ duration: 0.3 }}
-      >
-        <p>{description}</p>
-      </motion.div>
-    </motion.div>
-  );
-};
 
 const Content = () => {
   const navigate = useNavigate();
-
-  const cyberSecurityServices = [
-    { title: "Network Security", description: "Protect your network infrastructure from external threats and unauthorized access." },
-    { title: "Penetration Testing", description: "Identify vulnerabilities in your systems through simulated cyber attacks." },
-    { title: "Incident Response", description: "Rapid response and mitigation strategies for security breaches and cyber incidents." }
-  ];
-
-  const aiMlServices = [
-    { title: "Predictive Analytics", description: "Leverage AI to forecast trends and make data-driven decisions." },
-    { title: "Natural Language Processing", description: "Implement NLP solutions for text analysis and language understanding." },
-    { title: "Computer Vision", description: "Develop image and video analysis systems for various applications." }
-  ];
 
   const asescards = [
     { title: "Gather Information", description: "On your current Security Posture", icon: ClipboardList,color:'green' },
@@ -138,14 +134,12 @@ const Content = () => {
     }
   ];
 
-  const coloring=["green","blue","pink","red","yellow"]
-
   return (
     <div>
     <section className="content-section">
       <div className="container content-container">
         <div className="content-text">
-          <h2>Jaish Global Private Limited</h2>
+          <h2 style={{"textAlign":"left"}}>Jaish Global Private Limited</h2>
           <p>
           Established in 2019, Jaish Global Tech Pvt. Ltd has rapidly evolved into a distinguished solution provider in Cyber Security space and SI integrator in Digital Transformation using Machine Learning & Artificial Intelligence. 
           Our unwavering focus on quality and innovative niche technology solutions creates a true edge. Our commitment to excellence has positioned us as a trusted technology driven organization, safeguarding  customer businesses from the ever-evolving landscape of cyber threats and creating business values in customer’s enterprise portfolio using our AI tools / services. 
@@ -315,9 +309,3 @@ const Homepage = () => {
 };
 
 export default Homepage;
-
-// gap analysis
-// micro 365
-// idam
-// grc
-// soc
