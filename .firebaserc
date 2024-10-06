@@ -1,5 +1,19 @@
 {
   "projects": {
     "default": "jaishglobaltech"
-  }
+  },
+  "targets": {
+    "jaishglobaltech": {
+      "hosting": {
+        "default": [
+          "jaishglobal.com",
+          "www.jaishglobatechl.com"
+        ],
+        "https://jaishglobaltech.com": [
+          "jaishglobaltech.com"
+        ]
+      }
+    }
+  },
+  "etags": {}
 }

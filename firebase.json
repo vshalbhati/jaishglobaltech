@@ -1,6 +1,7 @@
 {
   "hosting": {
     "public": "build",
+    "target": "https://jaishglobaltech.com",
     "ignore": [
       "firebase.json",
       "**/.*",
