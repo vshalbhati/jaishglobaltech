@@ -4,9 +4,9 @@ import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import './Services.css';
 import { PortableText } from '@portabletext/react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
-const ServiceCard = ({ name, short_description, image, onLearnMore }) => (
+const ServiceCard = ({ name, short_description, image, onLearnMore, categ, imagis }) => (
   <motion.div 
     className="service-card"
     whileHover={{ scale: 1.05 }}
@@ -20,14 +20,20 @@ const ServiceCard = ({ name, short_description, image, onLearnMore }) => (
      */}
     <h3>{name}</h3>
     <p>{short_description}</p>
-    <motion.button 
-      className="learn-more-btn"
-      whileHover={{ scale: 1.1 }}
-      whileTap={{ scale: 0.9 }}
+    {(categ ==='ai') && (
+      <div className="imgs">
+        <img src={imagis[0].asset.url} alt='AI and ML Image 1'/>
+        <img src={imagis[1].asset.url} alt='AI and ML Image 2'/>
+      </div>
+    )}
+    <motion.div
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
       onClick={onLearnMore}
+      style={{'width':'100px',backgroundColor:'rgba(0,0,0,0)',cursor:'pointer',width:'11rem',marginTop:'1rem'}}
     >
-      Learn More <ArrowRight size={16} />
-    </motion.button>
+      <img src={require('../../assets/imgs/readmore.png')} alt='learn-more-button' style={{'width':'11rem',}}/>
+    </motion.div>
   </motion.div>
 );
 
@@ -99,6 +105,12 @@ const Services = () => {
     fetchServices();
   }, []);
 
+  const location = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
+
   const fetchServices = async () => {
     try {
       const data = await client.fetch(`
@@ -168,35 +180,48 @@ const Services = () => {
   ];
   return (
     <div className="services-container">
-      <img
-        src={require('../../assets/imgs/services_bg.jpg')}
-        style={{"height":"50vh","width":"100vw","left":"0","position":"absolute","zIndex":"-1"}}
-      />
+      <div className="header-wrapper" style={{"position": "relative", "height": "50vh", "display": "flex", "justifyContent": "center", "alignItems": "center"}}>
+        <img
+          src={require('../../assets/imgs/services_bg.jpg')}
+          style={{"height":"100%","width":"100%","left":"0","position":"absolute","zIndex":"-1"}}
+        />
+      </div>
       <motion.h1 
         className="services-title"
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
+        style={{"fontSize":"3.5rem",marginTop:"0rem"}}
+
       >
         Our Services
       </motion.h1>
+        <motion.p 
+          className="services-subtitle"
+          initial={{ opacity: 0, y: -30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          style={{marginTop:"2rem"}}
+        >
+          Cyber Security
+        </motion.p>
 
       <div className="services-grid" style={{ display: 'block' }}>
   {/* upardabba */}
   <div className="upardabba" style={{ 
     display: 'flex', 
     flexWrap: 'wrap', 
-    gap: '1rem', 
-    width: '60%', /* Full width for responsiveness */
+    gap: '1.5rem', 
+    width: '60%', 
     justifyContent: 'center', 
     alignItems: 'center', 
     margin: '0 auto',
-    boxShadow: "0 0 10px rgba(0,0,0,0.5)",
-    padding: "20px",
+    boxShadow: "0 0 1px rgba(0,0,0,0.5)",
+    padding: "30px",
     borderRadius: "30px",
-    paddingTop: '60px',
-    paddingBottom: '60px',
-    maxWidth: '1200px' /* Add a max-width for large screens */
+    maxWidth: '1200px' ,
+    backgroundColor: "rgba(255, 255, 255,0.3)"
+
   }}>
     {serviceschotadabba.map((service, index) => (
       <motion.div
@@ -206,15 +231,17 @@ const Services = () => {
         transition={{ duration: 0.5, delay: index * 0.1 }}
         className="service-card"
         style={{
-          border: `2px solid ${service.color}`,
           borderRadius: "20px",
-          width: "100%", /* 100% width for mobile */
-          maxWidth: "15rem", /* Set max width for larger screens */
+          width: "100%", 
+          maxWidth: "15rem", 
           height: "5rem",
-          flex: "1 1 15rem" /* Flex-grow property to allow flexible widths */
+          flex: "1 1 15rem",
+          backgroundColor: "rgba(238, 355, 255,0.8)",
+          boxShadow: "0 0 10px rgba(0,0,0,0.5)",
+
         }}
       >
-        <p>{service.name}</p>
+        <p style={{fontWeight:"bold"}}>{service.name}</p>
       </motion.div>
     ))}
   </div>
@@ -224,7 +251,7 @@ const Services = () => {
   {/* nichedabba */}
   <div className='nichedabba' style={{
     display: 'flex',
-    gap: "40px", /* Reduced gap for smaller screens */
+    gap: "80px",
     padding: "2rem",
     borderRadius: "20px",
     boxShadow: "0 0 10px rgba(0,0,0,0.5)",
@@ -232,8 +259,10 @@ const Services = () => {
     justifyContent: 'center', 
     alignItems: 'center', 
     margin: '0 auto',
-    flexWrap: 'wrap', /* Wrap items on smaller screens */
-    maxWidth: '1200px'
+    flexWrap: 'wrap',
+    maxWidth: '1200px',
+    backgroundColor: "rgba(255, 255, 255,0.3)"
+
   }}>
     {anotherdabba.map((service, index) => (
       <motion.div
@@ -245,28 +274,23 @@ const Services = () => {
         style={{
           border: `2px solid blue`,
           borderRadius: "20px",
-          width: "100%", /* 100% for mobile */
-          maxWidth: "5rem", /* Max-width for larger screens */
+          width: "100%",
+          maxWidth: "5rem",
           height: "3rem",
           textAlign: 'center',
-          flex: "1 1 5rem" /* Flex-grow to ensure responsiveness */
+          flex: "1 1 5rem",
+          backgroundColor: "rgba(238, 255, 255,0.8)"
+
         }}
       >
-        <p>{service.name}</p>
+        <p style={{fontWeight:"bold"}}>{service.name}</p>
       </motion.div>
     ))}
   </div>
 </div>
 
       
-      <motion.p 
-        className="services-subtitle"
-        initial={{ opacity: 0, y: -30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.2 }}
-      >
-        Our services related to cyber security
-      </motion.p>
+      
       <div className="services-grid">
         {(cyberServices.length>0)?(
           cyberServices.map((service, index) => (
@@ -311,7 +335,10 @@ const Services = () => {
                   short_description={service.short_description}
                   image={service.image}
                   onLearnMore={() => openModal(service)}
+                  categ= {service.category}
+                  imagis={service.images}
                 />
+                
               </motion.div>
             ))
         ):(

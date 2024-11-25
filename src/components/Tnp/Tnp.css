@@ -1,9 +1,9 @@
-/* TrainingAndPlacement.css */
-
 .training-placement-container {
-    max-width: 1200px;
-    margin: 0 auto;
+    max-width: 99vw;
     padding: 2rem 1rem;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
   }
   
   .main-title {
@@ -12,7 +12,6 @@
     text-align: center;
     margin-bottom: 1rem;
     color: #333;
-    margin-top: 22rem;
   }
   
   .intro-text {

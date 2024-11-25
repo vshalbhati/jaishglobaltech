@@ -2,12 +2,19 @@ import React, { useEffect, useState } from 'react';
 import { client} from '../../sanityclient'; 
 import { motion } from 'framer-motion';
 import './About.css';
+import { useLocation } from 'react-router-dom';
 const AboutUs = () => {
   const [datamila, setdatamila] = useState([])
 
   useEffect(() => {
     fetchdata();
   }, [])
+
+  const location = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
 
   const fetchdata = async () => {
     try {
@@ -29,11 +36,11 @@ const AboutUs = () => {
 
   return (
     <div className="container">
-      <div className="imgdabba">
+      <div className="header-wrapper" style={{"position": "relative", "height": "50vh", "display": "flex", "justifyContent": "center", "alignItems": "center"}}>
         <img
-          src={require('../../assets/imgs/about_bg.jpg')}
-          style={{"height":"50vh","width":"100vw","left":"0","position":"absolute","zIndex":"-1"}}
-        />
+            src={require('../../assets/imgs/about_bg.jpg')}
+            style={{"height":"100%","width":"100%","left":"0","position":"absolute","zIndex":"-1"}}
+          />
       </div>
       
       <motion.h1 
@@ -41,7 +48,7 @@ const AboutUs = () => {
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        style={{"fontSize":"3.5rem"}}
+        style={{"fontSize":"3.5rem","marginTop":"2rem"}}
       >
         About Us
       </motion.h1>
@@ -55,9 +62,9 @@ const AboutUs = () => {
         <h2>Our Company</h2>
         <p>
         Established in 2019, Jaish Global has rapidly evolved into a distinguished solution provider in Cyber Security space and SI integrator in Digital Transformation using Machine Learning & Artificial Intelligence. Its umbrella company named “JS Global IT Consultancy  Services” is an ISO 9001, 27001 certified.
-Our unwavering focus on quality and innovative niche technology solutions creates a true edge. Our commitment to excellence has positioned us as a trusted technology driven organization, safeguarding  customer businesses from the ever-evolving landscape of cyber threats and creating business values in customer’s enterprise portfolio using our AI tools / services.  
-We never stop pushing the boundaries of what is possible. We are always learning, growing, re-skilling in Technology solution and process mapping to stay at the forefront of the industry. Our dynamic culture reflects our drive to be the best.
-Our growth trajectory is fueled by our core values, including diversity, employee empowerment, and a commitment to ethical business practices.       </p>
+        Our unwavering focus on quality and innovative niche technology solutions creates a true edge. Our commitment to excellence has positioned us as a trusted technology driven organization, safeguarding  customer businesses from the ever-evolving landscape of cyber threats and creating business values in customer’s enterprise portfolio using our AI tools / services.  
+        We never stop pushing the boundaries of what is possible. We are always learning, growing, re-skilling in Technology solution and process mapping to stay at the forefront of the industry. Our dynamic culture reflects our drive to be the best.
+        Our growth trajectory is fueled by our core values, including diversity, employee empowerment, and a commitment to ethical business practices.       </p>
       </motion.section>
 
       {datamila.map((founder, index) => (

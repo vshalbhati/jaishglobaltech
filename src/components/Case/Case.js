@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronRight, ChevronLeft, X } from 'lucide-react';
+import { X } from 'lucide-react';
 import './Case.css';
 import { client } from '../../sanityclient'; 
 import { PortableText } from '@portabletext/react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 const Book = ({ study, onClick }) => (
   <motion.div
@@ -20,27 +20,6 @@ const Book = ({ study, onClick }) => (
 );
 
 const OpenBook = ({ study, onClose }) => {
-  const [currentPage, setCurrentPage] = useState(0);
-  const [direction, setDirection] = useState(0);
-
-  const pages = [
-    { title: study.name, content: study.domain },
-    { title: "Challenge", content: study.challenge },
-    { title: "Solution", content: study.solution },
-    { title: "Process", content: study.process ? <PortableText value={study.process} /> : null },
-    { title: "Scope", content: study.scope ? <PortableText value={study.scope} /> : null },
-    { title: "Benefits", content: study.benefits ? <PortableText value={study.benefits} /> : null }
-  ].filter(page => page.content);
-
-  const nextPage = () => {
-    setDirection(1);
-    setCurrentPage(prev => Math.min(prev + 1, pages.length - 1));
-  };
-
-  const prevPage = () => {
-    setDirection(-1);
-    setCurrentPage(prev => Math.max(prev - 1, 0));
-  };
 
   return (
     <motion.div
@@ -53,33 +32,38 @@ const OpenBook = ({ study, onClose }) => {
       <button className="close-btn" onClick={onClose}><X /></button>
       <div className="book-content">
         <div style={{"textAlign":"left"}}>
-          <h2 >Case Study Domain</h2>
+          <h3 style={{"textAlign":"left"}}>Case Study Domain</h3>
           <p>{study.domain}</p>
         </div>
-        <div style={{"textAlign":"left"}}>
-          <h2 >Challenge</h2>
-          <p >{study.challenge}</p>
-        </div>
-        <div style={{"textAlign":"left"}}>
-          <h2 >Solution</h2>
-          <p>{study.solution}</p>
-        </div>
+        {(study.challenge) && (
+          <div style={{"textAlign":"left"}}>
+            <h3 style={{"textAlign":"left"}}>Challenge</h3>
+            <p >{study.challenge}</p>
+          </div>
+        )}
+        {(study.solution) && (
+          <div style={{"textAlign":"left"}}>
+            <h3 style={{"textAlign":"left"}}>Solution</h3>
+            <p>{study.solution}</p>
+          </div>
+        )}
+       
         
         {(study.process) &&(
           <div style={{"textAlign":"left"}}>
-            <h2>Process</h2>
+            <h3 style={{"textAlign":"left"}}>Process</h3>
             <PortableText value={study.process} />
           </div>
         )}
         {(study.scope) &&(
           <div style={{"textAlign":"left"}}>
-            <h2>Scope</h2>
+            <h3 style={{"textAlign":"left"}}>Scope</h3>
             <PortableText value={study.scope} />
           </div>
         )}
         {(study.benefits) &&(
           <div style={{"textAlign":"left"}}>
-            <h2>Benefits</h2>
+            <h3 style={{"textAlign":"left"}}>Benefits</h3>
             <PortableText value={study.benefits} />
           </div>
         )}
@@ -121,14 +105,22 @@ const Case = () => {
   const cyberCaseStudy = casestudy.filter(study => study.category === 'cyber');
   const aiCaseStudy = casestudy.filter(study => study.category === 'ai');
 
+  const location = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
+
 
   return (
     <div className="bookshelf">
-      <img
-        src={require('../../assets/imgs/case.jpg')}
-        style={{"height":"45vh","width":"100vw","left":"0","position":"absolute","zIndex":"0"}}
-      />
-      <motion.h1 
+      <div className="header-wrapper" style={{"position": "relative", "height": "50vh", "display": "flex", "justifyContent": "center", "alignItems": "center"}}>
+        <img
+          src={require('../../assets/imgs/case.jpg')}
+          style={{"height":"45vh","width":"100vw","left":"0","position":"absolute","zIndex":"0"}}
+        />
+      </div>
+      {/* <motion.h1 
           className="products-title"
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
@@ -136,14 +128,14 @@ const Case = () => {
           style={{"fontSize":"3rem","marginTop":"18rem"}}
         >
           Case Studies
-        </motion.h1>
+        </motion.h1> */}
       <div className="constiner">
         <motion.p 
           className="products-intro"
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          style={{"fontWeight":"bold","color":"#3fa9d7","marginBottom":"8rem","marginTop":"-1rem"}}
+          style={{"fontSize":"3.5rem","fontWeight":"bold","color":"#dcca00","marginBottom":"8rem","marginTop":"2rem"}}
         >
           Cyber Security
         </motion.p>

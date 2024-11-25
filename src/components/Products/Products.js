@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { client } from '../../sanityclient'; 
 import { PortableText } from '@portabletext/react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import './Products.css'
 const ProductCard = ({ name, short_description, image, onLearnMore,features }) => (
@@ -35,14 +35,25 @@ const ProductCard = ({ name, short_description, image, onLearnMore,features }) =
       )}
       
     </ul>
-    <motion.button 
+    {/* <motion.button 
       className="learn-more-btn"
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.9 }}
       onClick={onLearnMore}
     >
       Learn More <ArrowRight size={16} />
-    </motion.button>
+    </motion.button> */}
+    <motion.div
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
+      onClick={onLearnMore}
+      style={{'width':'100px',backgroundColor:'rgba(0,0,0,0)',cursor:'pointer',width:'11rem',marginTop:'1rem'}}
+    >
+      <img src={require('../../assets/imgs/readmore.png')} alt='learn-more-button' 
+      style={{
+        'width':'11rem',  
+      }}/>
+    </motion.div>
   </motion.div>
 );
 
@@ -52,11 +63,11 @@ const Modal = ({ isOpen, onClose, service }) => {
   return (
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-content" onClick={e => e.stopPropagation()}>
-        {service.image && service.image.asset && service.image.asset.url ? (
+        {/* {service.image && service.image.asset && service.image.asset.url ? (
           <img src={service.image.asset.url} alt={service.name} className="modal-image" />
         ) : (
           <div className="modal-image-placeholder">No Image Available</div>
-        )}     
+        )}      */}
         <h2>{service.name}</h2>   
         <p>{service.short_description}</p>
         <h3>Description</h3>
@@ -110,6 +121,14 @@ const Products = () => {
   const [selectedService, setSelectedService] = useState(null);
   const [services, setServices] = useState([]);
 
+
+  const location = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
+
+
   useEffect(() => {
     fetchServices();
   }, []);
@@ -157,21 +176,21 @@ const Products = () => {
 
   return (
     <div className="products-container">
-      
-      <img
-        src={require('../../assets/imgs/product_bg.jpg')}
-        style={{"height":"50vh","width":"100vw","left":"0","position":"absolute","zIndex":"-1"}}
-      />
-      
+      <div className="header-wrapper" style={{"position": "relative", "height": "50vh", "display": "flex", "justifyContent": "center", "alignItems": "center"}}>
+        <img
+          src={require('../../assets/imgs/product_bg.jpg')}
+          style={{"height":"100%","width":"100%","left":"0","position":"absolute","zIndex":"-1"}}
+        />
+      </div>
       <motion.h1 
-        className="products-title"
-        initial={{ opacity: 0, y: -50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-      >
-        Cyber Security
-      </motion.h1>
-
+          className="products-title"
+          initial={{ opacity: 0, y: -50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          style={{"fontSize":"3.5rem"}}
+        >
+          Cyber Security
+        </motion.h1>
       <motion.p 
         className="products-intro"
         initial={{ opacity: 0 }}

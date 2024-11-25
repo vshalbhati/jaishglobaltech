@@ -9,7 +9,10 @@ import Products from './Products/Products';
 import Tnp from './Tnp/Tnp';
 import Case from './Case/Case';
 import Footer from './Homepage/Footer';
+// import Events from './Events/Events';
+import Tech from './Tech/Tech';
 function Routing() {
+
   return (
     <Router>
     <Header/>
@@ -21,6 +24,9 @@ function Routing() {
         <Route path='/products' element={<Products/>}/>
         <Route path='/tnp' element={<Tnp/>}/>
         <Route path='/case' element={<Case/>}/>
+        <Route path='/tech' element={<Tech/>}/>
+
+        {/* <Route path='/events' element={<Events/>}/> */}
 
         <Route path="*" element={<Navigate to="/" replace />} />
 

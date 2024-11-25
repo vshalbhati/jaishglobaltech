@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import {File, Paperclip } from 'lucide-react';
 import '../Homepage/Homepage.css';
 import axios from 'axios';
 import {Phone, Mail } from 'lucide-react';
+import { MapPin } from 'lucide-react';
+import { useLocation } from 'react-router-dom';
+import Googlemap from '../Homepage/Googlemap'; 
 
 function Contact() {
     const [formData, setFormData] = useState({
@@ -71,8 +74,8 @@ function Contact() {
                 ...formData,
                 attach: fileData
             };
-
             const response = await axios.post('https://us-central1-jaishglobaltech.cloudfunctions.net/api/send-email', dataToSend);
+            console.log(dataToSend)
 
             setResult({ success: true, message: 'Email sent successfully!' });
         } catch (error) {
@@ -85,43 +88,59 @@ function Contact() {
 
       const [isopen, setisopen] = useState(false)
       
-    
+      const location = useLocation();
+
+      useEffect(() => {
+        window.scrollTo(0, 0);
+      }, [location]);
+
+      const childVariants = {
+        hidden: { opacity: 0, y: 20 },
+        visible: { 
+          opacity: 1, 
+          y: 0,
+          transition: { duration: 0.5 }
+        }
+      };
+
       return (
       <section className="contact-form-section">
-      <img
-        src={require('../../assets/imgs/contact_bg.jpg')}
-        style={{"height":"50vh","width":"100vw","left":"0","position":"absolute","zIndex":"0"}}
-      />
+        <div className="header-wrapper" style={{"position": "relative", "height": "50vh", "display": "flex", "justifyContent": "center", "alignItems": "center"}}>
+          <img
+            src={require('../../assets/imgs/contact_bg.jpg')}
+            style={{"height":"50vh","width":"100vw","left":"0","position":"absolute","zIndex":"0"}}
+          />
+        </div>
       <motion.h1 
         className="products-title"
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        style={{"fontSize":"3rem","marginTop":"22rem"}}
+        style={{"fontSize":"3rem","marginTop":"2rem"}}
       >
         Contact Us
       </motion.h1>
       <div className="container" style={{"marginTop":"0px"}}>
-        <div className="contact-info" style={{"marginLeft":"1rem",backgroundColor:'#4299e1'}}>
-          <h2 style={{"color":"white"}}>Take the first step to success with Jaish Global Pvt. Ltd.</h2>
+        <div className="contact-info" style={{"marginLeft":"1rem"}}>
+          <h2 style={{"color":"black"}}>Take the first step to success with Jaish Global Tech Pvt. Ltd.</h2>
           <p>Have any question?</p>
           <div className="contact-details">
             <p><Phone size={18} /> +91-9205760111, +91-9205760444, +91-124-4461181</p>
-            <p><Mail size={18} /> info@jaishglobal.in</p>
+            <p><Mail size={18} /> info@jaishglobaltech.com</p>
           </div>
           <h3>Addresses</h3>
-          <h4>India</h4>
-          <p>449, JMD Megapolis IT Park, Sohna Rd, Sector 48, Gurugram, Haryana, 122001</p>
-          <p>C-117, Sector 3, Tirkha Colony, Ballabgarh Faridabad, Haryana – 121004</p>
-          <p>Plot No. 4/1, Survey No. 64, Huda Techno Enclave, Madhapur, HITEC City, Hyderabad, Telangana 500082</p>
-          <h4>UK</h4>
-          <p>New Broad Street House, 35 New Broad Street, London, EC2M 1 NH</p>
-          <h4>NETHERLAND</h4>
-          <p>B.V. John M. Keynesplein 10 1066 EP AMSTERDAM</p>
-          <h4>SPAIN</h4>
-          <p>Insight Connect Spain SL, Villalar, 7BJIZQ-28001,Madrid, Spain</p>
-          <h4>Dubai</h4>
-          <p>L.L.C. B-04, ARB BLOCK-COMMERCIAL, AL BARSHA FIRST DUBAI-UAE, PO BOX: 88285</p>
+          <h4><MapPin size={18} /> India</h4>
+            <p>&#8226; 449, JMD Megapolis IT Park, Sohna Rd, Sector 48, Gurugram, Haryana, 122018</p>
+            <p>&#8226; C-117, Sector 3, Tirkha Colony, Ballabgarh Faridabad, Haryana – 121004</p>
+            <p>&#8226; Plot No. 4/1, Survey No. 64, Huda Techno Enclave, Madhapur, HITEC City, Hyderabad, Telangana 500082</p>
+          <h4><MapPin size={18} /> UK</h4>
+            <p>New Broad Street House, 35 New Broad Street, London, EC2M 1 NH</p>
+          <h4><MapPin size={18} /> NETHERLAND</h4>
+            <p>B.V. John M. Keynesplein 10 1066 EP AMSTERDAM</p>
+          <h4><MapPin size={18} /> SPAIN</h4>
+            <p>Insight Connect Spain SL, Villalar, 7BJIZQ-28001,Madrid, Spain</p>
+          <h4><MapPin size={18} /> Dubai</h4>
+            <p>L.L.C. B-04, ARB BLOCK-COMMERCIAL, AL BARSHA FIRST DUBAI-UAE, PO BOX: 88285</p>
         </div>
         <form className="contact-form" onSubmit={sendEmail}>
         <div style={{"display":"flex","gap":"50px"}}>
@@ -174,13 +193,21 @@ function Contact() {
                      </label>
                  </div>
                ):(
-                 <button onClick={()=>setisopen(true)} className='uploadbtn'><File/> Upload</button>
+                //  <button onClick={()=>setisopen(true)} className='uploadbtn'><File/> Upload</button>
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={()=>setisopen(true)}
+                  style={{'width':'100px',backgroundColor:'rgba(0,0,0,0)',cursor:'pointer',width:'11rem',marginTop:'1rem'}}
+                >
+                  <img src={require('../../assets/imgs/upload.png')} alt='learn-more-button' 
+                  style={{
+                    'width':'11rem',  
+                  }}/>
+                </motion.div>
                )
                }
               
-              {/*
-              https://jaishglobaltech.web.app
-                */}
                <motion.button
                  whileHover={{ scale: 1.05 }}
                  whileTap={{ scale: 0.95 }}
@@ -197,8 +224,14 @@ function Contact() {
                )}
             </form>
       </div>
+
+      <div className="googlemap">
+        <motion.div variants={childVariants} className="google-map-container">
+          <Googlemap />
+        </motion.div>
+      </div>
     </section>
-      );
+  );
 }
 
 export default Contact

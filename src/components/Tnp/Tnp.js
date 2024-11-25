@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import './Tnp.css';
 import { client } from '../../sanityclient'; 
-
+import { useLocation } from 'react-router-dom';
 const Tnp = () => {
   const trainingPrograms = [
     {
@@ -24,15 +24,6 @@ const Tnp = () => {
       topics: ["FinTech", "HealthTech", "E-commerce", "Cybersecurity"]
     }
   ];
-
-  const placementServices = [
-    "Resume Building and Optimization",
-    "Mock Interviews and Feedback",
-    "Job Market Analysis and Insights",
-    "Networking Events with Industry Leaders",
-    "Personalized Career Counseling",
-    "Job Placement Assistance"
-  ];
   const [tableData, setTableData] = useState(null);
 
   useEffect(() => {
@@ -50,24 +41,32 @@ const Tnp = () => {
       }`;
       const data = await client.fetch(query);
       setTableData(data);
-      console.log(data)
     } catch (error) {
       console.error('Error fetching table data:', error);
     }
   };
 
+  const location = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
+
   return (
     <div className="training-placement-container">
-      <img
-          src={require('../../assets/imgs/tnp_bg.jpg')}
-          style={{"height":"50vh","width":"100vw","left":"0","position":"absolute","zIndex":"-1"}}
-        />
+      <div className="header-wrapper" style={{"position": "relative", "height": "50vh", "display": "flex", "justifyContent": "center", "alignItems": "center"}}>
+        <img
+            src={require('../../assets/imgs/tnp_bg.jpg')}
+            style={{"height":"45vh","width":"98vw","left":"0","position":"absolute","zIndex":"0"}}
+            />
+      </div>
       <motion.h1 
         className="main-title"
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        style={{"color":"#333"}}
+        style={{"color":"#333","fontSize":"3.5rem","marginTop":"2rem"}}
+
       >
         Training and Development
       </motion.h1>
@@ -161,30 +160,6 @@ const Tnp = () => {
         <p>Loading table data...</p>
       )}
     </div>
-
-
-      {/* <section className="placement-section">
-        <motion.h2 
-          className="section-title"
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5, delay: 0.5 }}
-        >
-          Placement Services
-        </motion.h2>
-        <ul className="placement-list">
-          {placementServices.map((service, index) => (
-            <motion.li 
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 * index + 0.6 }}
-            >
-              {service}
-            </motion.li>
-          ))}
-        </ul>
-      </section> */}
     </div>
   );
 };

@@ -40,6 +40,9 @@ body {
     margin: 0 auto;
     padding: 0 20px;
   }
+  .container .content-container{
+    background-color: #983d3d;
+  }
   
   .header-content {
     display: flex;
@@ -54,8 +57,8 @@ body {
   }
   
   .logo {
-    width: 185px;
-    height: 90px;
+    width: 195px;
+    height: 100px;
     margin-right: 120px;
   }
   
@@ -150,21 +153,6 @@ body {
     margin-bottom: 1rem;
   }
   
-  .cta-button {
-    background-color: #4299e1;
-    color: white;
-    border: none;
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
-    border-radius: 9999px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .cta-button:hover {
-    background-color: #3182ce;
-  }
-  
   .content-image img {
     max-width: 100%;
     height: auto;
@@ -188,7 +176,6 @@ body {
   flex: 1;
   padding-right: 2rem;
 }
-
 .content-image {
   flex: 1;
   text-align: center;
@@ -200,13 +187,13 @@ body {
 }
 
 .cta-button {
-  background-color: #4a90e2;
   color: white;
   border: none;
   padding: 10px 20px;
   font-size: 1rem;
   cursor: pointer;
   border-radius: 5px;
+  background-color: #1c63b3ab;
 }
 .cta-button-service{
   background-color: #d4dbe3ab;
@@ -223,6 +210,7 @@ body {
   padding: 30px 15px;
   max-width: 1200px;
   margin: 0 auto;
+  margin-top: -4rem;
 }
 
 .service-portfolio h2 {
@@ -247,7 +235,7 @@ body {
   flex-direction: column;
   align-items: center;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  width: 40vh;
+  width: 25vh;
 }
 
 .service-box h3 {
@@ -303,19 +291,6 @@ body {
 .services li svg, .products li svg {
   margin-right: 5px;
 }
-
-.cta-button-service {
-  margin-top: 20px;
-  padding: 10px 20px;
-  font-size: 1rem;
-  border: none;
-  border-radius: 5px;
-  background-color: white;
-  color: #333;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
 @media (min-width: 768px) {
   .service-portfolio {
     padding: 50px 30px;
@@ -331,7 +306,7 @@ body {
   }
 
   .service-box {
-    width: 30%; /* More flexible width */
+    width: 25%; 
     padding: 30px;
     margin: 0;
   }
@@ -356,7 +331,7 @@ body {
 /* Additional Media Queries for very large screens (desktops) */
 @media (min-width: 1200px) {
   .service-box {
-    width: 45%; /* Smaller width on very large screens */
+    width: 27%; /* Smaller width on very large screens */
   }
 }
 
@@ -379,6 +354,7 @@ body {
   justify-content: space-between;
   align-items: stretch;
   width: 100%;
+  margin-top: 4rem;
 }
 
 .approachcard {
@@ -486,6 +462,7 @@ h2 {
   display: flex;
   justify-content: center;
   gap: 1.8rem;
+  margin-top: 10rem;
 }
 
 .assessment-card {
@@ -569,8 +546,8 @@ h2 {
   .contact-info {
     flex: 1;
     padding: 40px;
-    background-color: #4299e1;
-    color: white;
+    background-color: #9acaf2a0;
+    color: rgb(0, 0, 0);
     border-radius: 20px;
   }
   
@@ -623,9 +600,8 @@ h2 {
   }
   
   .uploadbtn {
-    background-color: #4299e1;
-    color: #fff;
-    border-radius: 9999px;
+    color: #000000;
+    border-radius: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -638,16 +614,16 @@ h2 {
   }
   
   .uploadbtn:hover {
-    background-color: #3182ce;
+    background-color: #ffffff;
   }
   
   .submit-button {
-    background-color: #4299e1;
+    background-color: #9acaf2;
     color: white;
     border: none;
     padding: 0.75rem 1rem;
     font-size: 1rem;
-    border-radius: 9999px;
+    border-radius: 10px;
     cursor: pointer;
     transition: background-color 0.3s;
     margin-top: 20px;
@@ -670,7 +646,7 @@ h2 {
 
   
   .footer {
-    background-color: #baedf5;
+    background-color: #a0deff94;
     color: white;
     padding: 1rem 0 1rem;
     position: relative;
@@ -733,6 +709,10 @@ h2 {
     list-style-type: none;
     padding: 0;
   }
+
+  .footer .contact-info{
+    background-color: #00000000;
+  }
   
   .footer-section ul li {
     margin-bottom: 0.8rem;
@@ -751,6 +731,12 @@ h2 {
     color: #ffffff;
     transform: translateX(5px);
   }
+  .nav-link.active,.mobile-nav-link.active {
+    background-color: #80808042;
+    padding-left: 5px;
+    padding-right: 5px;
+    border-radius: 5px;
+}
   
   .quick-links li a::before {
     content: '→';
@@ -760,9 +746,6 @@ h2 {
   
   .quick-links li a:hover::before {
     margin-right: 10px;
-  }
-  .contact-info{
-    background-color: rgba(0,0,0,0);
   }
   .contact-info li, .social-icons li {
     display: flex;
@@ -811,16 +794,16 @@ h2 {
 
   .video-carousel-container {
     width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
+    margin: -60px auto;
     overflow: hidden;
   }
   
   .video-slide {
     width: 100%;
     height: 0;
-    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+    padding-bottom: 56.25%;
     position: relative;
+    background-color: #000000;
   }
   
   .video-slide video {
@@ -991,3 +974,11 @@ h2 {
     color: #ffffff;
   }
   
+  .google-map-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 2rem auto;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }

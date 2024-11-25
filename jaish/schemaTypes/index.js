@@ -5,6 +5,8 @@ import about from './about'
 import casestudy from './casestudy'
 import tnd from './tnd'
 import table from './table'
+import events from './events'
+import technologies from './technologies'
 export const schemaTypes = [
     products,
     video,
@@ -13,4 +15,6 @@ export const schemaTypes = [
     casestudy,
     tnd,
     table,
+    events,
+    technologies
 ]

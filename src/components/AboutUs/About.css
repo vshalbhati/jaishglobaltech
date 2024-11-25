@@ -1,7 +1,7 @@
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 2rem 1rem;
+    padding: 1rem 1rem;
   }
   
   .main-title {
@@ -9,10 +9,9 @@
     font-weight: bold;
     text-align: center;
     margin-bottom: 2rem;
-    color: rgb(255, 255, 255);
-    margin-top: 10rem;
+    color: rgb(0, 0, 0);
+    margin-top: 1rem;
   }
-  
   .company-info {
     margin-bottom: 3rem;
     margin-top: 1rem;
@@ -34,7 +33,11 @@
     font-weight: 600;
     margin-bottom: 2rem;
   }
-  
+  .imgdabba{
+    width: 100vw;
+    height: 100%;
+    margin-left: -10.5rem;
+  }
   .founder {
     display: flex;
     flex-direction: column;
@@ -75,7 +78,6 @@
       align-items: flex-start;
       text-align: left;
     }
-  
     .founder.odd {
       flex-direction: row-reverse;
     }
@@ -93,5 +95,8 @@
   
     .odd .founder-info {
       padding: 0 2rem 0 0;
+    }
+    .main-title{
+      margin-top: 7rem;
     }
   }

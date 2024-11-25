@@ -3,12 +3,12 @@ import { motion } from 'framer-motion';
 import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import './Homepage.css';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import {  ClipboardList, 
   Search, 
   Shield, 
   FileCheck, 
-  LightbulbIcon, Code, Rocket, Brain } from 'lucide-react';
+  LightbulbIcon, Code, Rocket, Brain, ActivityIcon} from 'lucide-react';
 import { FaCheckCircle } from 'react-icons/fa';
 const VideoCarousel = () => {
   const videos = [
@@ -39,7 +39,7 @@ const VideoCarousel = () => {
     <div className="video-carousel-container">
     <Carousel 
       autoPlay 
-      interval={10000} 
+      interval={3000} 
       infiniteLoop 
       showThumbs={false}
       showStatus={false}
@@ -121,37 +121,49 @@ const Content = () => {
       icon: Shield,
       description: "Protect your digital assets with our comprehensive cybersecurity solutions.",
       color: "#4F46E5",
-      services:["Gap Analysis","Microsoft 365","IDAM","GRC"],
-      products:["Digital Risk Monitor", "Dark Web Monitor","Supplier RIsk Monitor"]
+      services: ["Gap Analysis", "Microsoft 365", "IDAM", "GRC"],
+      products: ["Digital Risk Monitor", "Dark Web Monitor", "Supplier Risk Monitor"]
     },
     {
       title: "Machine Learning & AI for Digital Transformation",
       icon: Brain,
       description: "Leverage the power of ML and AI to drive your digital transformation journey.",
       color: "#10B981",
-      services:["Machine Learning & Artificial Intelligence for Digital Transformation"],
-      products:["Texplicit - Intelligent Report Generator"]
+      services: ["Machine Learning & Artificial Intelligence for Digital Transformation"],
+      products: ["Texplicit - Intelligent Report Generator"]
+    },
+    {
+      title: "Process Automation Built for the Modern Workforce",
+      icon: ActivityIcon,
+      description: "Streamline and automate processes to boost productivity and efficiency.",
+      color: "orange",
+      services: ["Workflow Automation", "AI-driven Process Optimization"],
+      products: ["DocQ"]
     }
   ];
+  
 
   return (
     <div>
     <section className="content-section">
-      <div className="container content-container">
+      <div className="container content-container" style={{"marginTop":"3rem"}}>
         <div className="content-text">
-          <h2 style={{"textAlign":"left"}}>Jaish Global Private Limited</h2>
+          <h2 style={{"textAlign":"left"}}>Jaish Global Tech Private Limited</h2>
           <p>
           Established in 2019, Jaish Global Tech Pvt. Ltd has rapidly evolved into a distinguished solution provider in Cyber Security space and SI integrator in Digital Transformation using Machine Learning & Artificial Intelligence. 
           Our unwavering focus on quality and innovative niche technology solutions creates a true edge. Our commitment to excellence has positioned us as a trusted technology driven organization, safeguarding  customer businesses from the ever-evolving landscape of cyber threats and creating business values in customer’s enterprise portfolio using our AI tools / services. 
           </p>
-          <motion.button
+          <motion.div
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="cta-button"
             onClick={() => navigate('/about')}
+            style={{'width':'100px',backgroundColor:'rgba(0,0,0,0)',cursor:'pointer'}}
           >
-            Learn More
-          </motion.button>
+            <img src={require('../../assets/imgs/readmore.png')} alt='learn-more-button' 
+            style={{
+              'width':'200px',  
+            }}/>
+          </motion.div>
         </div>
 
         <div className="content-image">
@@ -184,7 +196,7 @@ const Content = () => {
               animate={{ rotate: 360 }}
               transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
             >
-              <service.icon size={48} color="white" />
+            <service.icon size={48} color="white" />
             </motion.div>
             <h3>{service.title}</h3>
             <p>{service.description}</p>
@@ -217,15 +229,17 @@ const Content = () => {
                 </ul>
               </motion.div>
             </div>
-            <motion.button
+            <motion.div
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="cta-button-service"
               onClick={() => navigate('/services')}
-              style={{"alignSelf":"center"}}
+              style={{'width':'100px',backgroundColor:'rgba(0,0,0,0)',cursor:'pointer',width:'10rem',marginTop:'1rem'}}
             >
-              Learn More
-            </motion.button>
+              <img src={require('../../assets/imgs/readmore.png')} alt='learn-more-button' 
+              style={{
+                'width':'10rem',  
+              }}/>
+            </motion.div>
           </motion.div>
         ))}
       </div>
@@ -240,7 +254,7 @@ const Content = () => {
       >
         Our Cyber Security Gap Assessment Model
       </motion.h2>
-      <div className="card-container">
+      <div className="card-container" style={{"marginTop":"3rem"}}>
         {asescards.map((card, index) => (
           <motion.div 
             key={index}
@@ -248,7 +262,7 @@ const Content = () => {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.3, delay: index * 0.1 }}
-            // style={{border: `0.15rem solid ${card.color}`}}
+            style={{border: `0.15rem solid ${card.color}`}}
           >
             <card.icon className="card-icon" />
             <h3 className="card-title">{card.title}</h3>
@@ -292,12 +306,16 @@ const Content = () => {
         ))}
       </div>
     </section>
-
     </div>
   );
 };
 
 const Homepage = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
   return (
     <div className="homepage">
       <main>
