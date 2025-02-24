@@ -139,8 +139,6 @@ function Contact() {
             <p>B.V. John M. Keynesplein 10 1066 EP AMSTERDAM</p>
           <h4><MapPin size={18} /> SPAIN</h4>
             <p>Insight Connect Spain SL, Villalar, 7BJIZQ-28001,Madrid, Spain</p>
-          <h4><MapPin size={18} /> Dubai</h4>
-            <p>L.L.C. B-04, ARB BLOCK-COMMERCIAL, AL BARSHA FIRST DUBAI-UAE, PO BOX: 88285</p>
         </div>
         <form className="contact-form" onSubmit={sendEmail}>
         <div style={{"display":"flex","gap":"50px"}}>

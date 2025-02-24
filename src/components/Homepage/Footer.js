@@ -56,7 +56,7 @@ const Footer = () => {
           <motion.div className="footer-section" variants={childVariants}>
             <h3>Contact Info</h3>
             <ul className="contact-info">
-              <li><Phone size={28} /> <span>+91-9205760444, +91-124-4461181</span></li>
+              <li><Phone size={28} /> <span>+91-9205760111,444, +91-124-4461181</span></li>
               <li><Mail size={18} /> <span>info@jaishglobaltech.com</span></li>
               <li><MapPin size={36} /> <span>449, 4th floor JMD Megapolis, Sector-48, Gurugram, Haryana - 122018</span></li>
             </ul>

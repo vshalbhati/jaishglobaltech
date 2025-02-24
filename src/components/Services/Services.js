@@ -164,7 +164,7 @@ const Services = () => {
 
   const cyberServices = services.filter(service => service.category === 'cyber');
   const aiServices = services.filter(service => service.category === 'ai');
-
+  const softServices = services.filter(service => service.category === 'software');
   const serviceschotadabba=[
     {name: "Cyber Security Gap Assessment / Analysis, VAPT", color: "purple"},
     {name: "Microsoft 365 implementation(Azure AD, E3, E5)", color: "blue"},
@@ -341,6 +341,37 @@ const Services = () => {
                 
               </motion.div>
             ))
+        ):(
+          <p>Can't load Services. Please check your connectivity.</p>
+        )}
+        
+      </div>
+
+      <motion.p 
+        className="services-subtitle"
+        initial={{ opacity: 0, y: -30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.2 }}
+      >
+        Software Development
+      </motion.p>
+      <div className="services-grid">
+        {(softServices.length>0)?(
+          softServices.map((service, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+            >
+              <ServiceCard
+                name={service.name}
+                short_description={service.short_description}
+                image={service.image}
+                onLearnMore={() => openModal(service)}
+              />
+            </motion.div>
+          ))
         ):(
           <p>Can't load Services. Please check your connectivity.</p>
         )}

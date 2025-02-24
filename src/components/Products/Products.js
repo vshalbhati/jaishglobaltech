@@ -11,13 +11,13 @@ const ProductCard = ({ name, short_description, image, onLearnMore,features }) =
     whileHover={{ scale: 1.05 }}
     transition={{ type: "spring", stiffness: 300 }}
   >
-    {/* {image && image.asset && image.asset.url ? (
+    {image && image.asset && image.asset.url ? (
       <img src={image.asset.url} alt={name} className="service-image" />
     ) : (
       <div className="service-image-placeholder">No Image Available</div>
-    )}     */}
+    )}    
     <h3>{name}</h3>
-    <p>{short_description}</p>
+    <p>{short_description.length > 200 ? `${short_description.substring(0, 200)}...` : short_description}</p>
     <ul className="product-features">
       {(features)?(
         features.map((feature, featureIndex) => (
@@ -35,14 +35,6 @@ const ProductCard = ({ name, short_description, image, onLearnMore,features }) =
       )}
       
     </ul>
-    {/* <motion.button 
-      className="learn-more-btn"
-      whileHover={{ scale: 1.1 }}
-      whileTap={{ scale: 0.9 }}
-      onClick={onLearnMore}
-    >
-      Learn More <ArrowRight size={16} />
-    </motion.button> */}
     <motion.div
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
@@ -232,7 +224,7 @@ const Products = () => {
         transition={{ duration: 0.5 }}
         style={{"marginTop":"8rem"}}
       >
-        Artificial Intelligence and Machine Learning
+        Artificial Intelligence & Machine Learning
       </motion.h1>
 
       <div className="products-grid">

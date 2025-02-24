@@ -19,6 +19,7 @@ export default defineType({
         list: [
           { title: "Cyber Security", value: "cyber" },
           { title: "AI & ML", value: "ai" },
+          { title: "Software Development", value: "software" },
         ],
         layout: 'dropdown'
       },

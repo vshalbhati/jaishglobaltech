@@ -6,12 +6,19 @@ body {
     padding-top: 80px;
   }
   .header {
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out; 
     position: fixed;
     top: 0;
+    left: 0;
     width: 100%;
-    background-color: #ffffff;
-    z-index: 1000;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000; 
+  }
+  .header-scrolled {
+    background-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   }
   .upardabba{
     background-color: #d1f9f6;
@@ -57,8 +64,8 @@ body {
   }
   
   .logo {
-    width: 195px;
-    height: 100px;
+    width: 50px;
+    height: 50px;
     margin-right: 120px;
   }
   
@@ -107,10 +114,7 @@ body {
     text-decoration: none;
     padding: 0.5rem 0;
   }
-  
-  /* Responsive Styles */
-  
-  /* For larger screens */
+
   @media (min-width: 768px) {
     .desktop-nav {
       display: flex;
@@ -121,7 +125,6 @@ body {
     }
   }
   
-  /* For mobile screens */
   @media (max-width: 768px) {
     .mobile-nav {
       display: block;
@@ -157,7 +160,6 @@ body {
     max-width: 100%;
     height: auto;
     border-radius: 0.5rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
 
 
@@ -205,133 +207,200 @@ body {
   border-radius: 5px;
   margin-top: 20px;
 }
-
 .service-portfolio {
-  padding: 30px 15px;
-  max-width: 1200px;
-  margin: 0 auto;
-  margin-top: -4rem;
+  padding: 2rem 1rem;
+  background-color: #ffffff;
+  overflow: hidden;
 }
 
 .service-portfolio h2 {
-  font-size: 2rem;
-  color: #333;
   text-align: center;
-  margin-bottom: 30px;
+  font-size: 2.5rem;
+  margin-bottom: 4rem;
+  color: #333;
+  font-weight: 700;
 }
 
-.service-boxes {
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
+.slick-slider {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.slick-slide {
+  padding: 0 10px;
+  transition: all 0.5s ease;
+  opacity: 0.6;
+  transform: scale(0.8) rotate(-5deg); /* Add slight rotation for side slides */
+  z-index: 0; /* Ensure side slides are below center */
+}
+
+.slick-center {
+  opacity: 1;
+  transform: scale(1) rotate(0deg); /* Center slide is upright and larger */
+  z-index: 1; /* Center slide is above others */
+}
+
+.slick-center .service-box {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
 }
 
 .service-box {
-  padding: 20px;
+  background-color: #fff;
   border-radius: 15px;
-  color: white;
+  padding: 2rem;
   text-align: center;
+  position: relative;
+  overflow: hidden;
+  min-height: 550px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  width: 25vh;
+  justify-content: space-between;
+  width: 95vw !important;
+  max-width: 900px;
+  margin: 0 auto;
+  transition: transform 0.5s ease, opacity 0.5s ease;
 }
 
-.service-box h3 {
-  font-size: 1.3rem;
-  margin: 15px 0;
+/* Overlap effect for adjacent slides */
+.slick-slide:not(.slick-center) {
+  margin: 0 -20px; /* Negative margin to create overlap */
 }
 
-.service-box p {
-  font-size: 0.9rem;
-  line-height: 1.5;
+/* Ensure center slide is not affected by negative margin */
+.slick-center {
+  margin: 0;
 }
 
 .icon-wrapper {
-  background-color: rgba(255, 255, 255, 0.2);
-  border-radius: 50%;
-  padding: 15px;
+  margin: 1.5rem 0;
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.2);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.service-box h3 {
+  font-size: 1.5rem;
+  margin: 1rem 0;
+  color: #fff;
+  font-weight: 600;
+}
+
+.service-box p {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 1.5rem;
+  padding: 0 1rem;
 }
 
 .dabbas {
   display: flex;
-  flex-direction: column;
-  gap: 15px;
-  width: 100%;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1rem;
+  padding: 0 1rem;
 }
 
 .services, .products {
-  background-color: rgba(255, 255, 255, 0.1);
-  border-radius: 10px;
-  padding: 15px;
-  margin-top: 15px;
-}
-
-.services p, .products p {
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-.services ul, .products ul {
-  list-style-type: none;
-  padding: 0;
+  flex: 1;
   text-align: left;
 }
 
+.services p, .products p {
+  font-size: 1.1rem;
+  color: #fff;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.services ul, .products ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
 .services li, .products li {
-  margin-bottom: 5px;
   display: flex;
   align-items: center;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 0.5rem;
 }
 
 .services li svg, .products li svg {
-  margin-right: 5px;
+  margin-right: 0.5rem;
+  color: #fff;
 }
-@media (min-width: 768px) {
-  .service-portfolio {
-    padding: 50px 30px;
-  }
 
+.read-more-btn {
+  cursor: pointer;
+  margin-top: 1.5rem;
+  transition: transform 0.2s ease;
+
+}
+
+.read-more-btn img {
+  width: 120px;
+  height: auto;
+}
+
+/* Slick Arrow Styles */
+.slick-prev, .slick-next {
+  width: 40px;
+  height: 40px;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.slick-prev:before, .slick-next:before {
+  font-size: 24px;
+  color: #fff;
+}
+
+.slick-prev {
+  left: 10px;
+}
+
+.slick-next {
+  right: 10px;
+}
+
+.slick-dots {
+  bottom: -40px;
+}
+
+.slick-dots li button:before {
+  font-size: 12px;
+  color: #666;
+}
+
+.slick-dots li.slick-active button:before {
+  color: #333;
+}
+
+@media (max-width: 768px) {
   .service-portfolio h2 {
-    font-size: 2.5rem;
-  }
-
-  .service-boxes {
-    flex-direction: row;
-    justify-content: space-between;
+    font-size: 2rem;
   }
 
   .service-box {
-    width: 25%; 
-    padding: 30px;
-    margin: 0;
-  }
-
-  .service-box h3 {
-    font-size: 1.5rem;
-  }
-
-  .service-box p {
-    font-size: 1rem;
-  }
-
-  .icon-wrapper {
-    padding: 20px;
+    min-height: 500px;
+    width: 85vw !important;
   }
 
   .dabbas {
-    flex-direction: row;
+    flex-direction: column;
   }
-}
 
-/* Additional Media Queries for very large screens (desktops) */
-@media (min-width: 1200px) {
-  .service-box {
-    width: 27%; /* Smaller width on very large screens */
+  .slick-slide:not(.slick-center) {
+    margin: 0;
   }
 }
 
